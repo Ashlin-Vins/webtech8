@@ -1,0 +1,56 @@
+name: Deploy to Render
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Check for syntax errors
+        run: node -c server.js
+      
+      - name: Lint check (optional)
+        run: echo "Linting skipped - add ESLint if needed"
+        continue-on-error: true
+
+  deploy:
+    name: Deploy to Render
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Deploy to Render
+        run: |
+          echo "🚀 Deployment triggered for Render"
+          echo "Render will automatically deploy from main branch"
+          echo "Check your Render dashboard for deployment status"
+      
+      - name: Deployment Status
+        run: |
+          echo "✅ Code pushed to main branch"
+          echo "📦 Render will build and deploy automatically"
+          echo "🌐 Check: https://dashboard.render.com"

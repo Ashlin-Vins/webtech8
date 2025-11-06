@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Item Details - AuctionHub</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <h2>🔨 AuctionHub</h2>
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/auctions">Browse Auctions</a></li>
+        <li class="user-only" style="display: none;"><a href="/create-auction">Create Auction</a></li>
+        <li class="user-only" style="display: none;"><a href="/my-auctions">My Auctions</a></li>
+        <li class="user-only" style="display: none;"><a href="/my-bids">My Bids</a></li>
+        <li class="admin-only" style="display: none;"><a href="/admin">Admin Panel</a></li>
+        <li class="guest-only"><a href="/login" class="btn btn-primary">Login</a></li>
+        <li class="guest-only"><a href="/register" class="btn btn-secondary">Register</a></li>
+        <li class="user-only" style="display: none;">
+          <span id="usernameDisplay" class="username"></span>
+          <button onclick="logout()" class="btn btn-danger">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container" style="margin-top: 2rem;">
+    <div id="loadingSpinner" class="loading">Loading item details...</div>
+    
+    <div id="itemDetails" style="display: none;">
+      <div class="item-details-container">
+        <div class="item-image-section">
+          <img id="itemImage" src="" alt="Item Image" class="item-detail-image">
+        </div>
+        
+        <div class="item-info-section">
+          <h1 id="itemName"></h1>
+          <p class="item-status-badge" id="itemStatus"></p>
+          
+          <div class="item-meta">
+            <p><strong>Seller:</strong> <span id="sellerName"></span></p>
+            <p><strong>Base Price:</strong> $<span id="basePrice"></span></p>
+            <p><strong>Current Price:</strong> <span class="price-highlight">$<span id="currentPrice"></span></span></p>
+            <p><strong>Total Bids:</strong> <span id="totalBids"></span></p>
+            <p><strong>Highest Bidder:</strong> <span id="highestBidder">None yet</span></p>
+            <p><strong>Ends:</strong> <span id="closingTime"></span></p>
+            <p id="timeRemaining" class="time-remaining"></p>
+          </div>
+
+          <div class="item-description">
+            <h3>Description</h3>
+            <p id="itemDescription"></p>
+          </div>
+
+          <div id="bidSection" class="bid-section" style="display: none;">
+            <h3>Place Your Bid</h3>
+            <form id="bidForm">
+              <div class="form-group">
+                <label for="bidAmount">Your Bid ($)</label>
+                <input type="number" id="bidAmount" name="bidAmount" step="0.01" min="0" required>
+                <small>Must be higher than current price</small>
+              </div>
+              <button type="submit" class="btn btn-success btn-block">Place Bid</button>
+            </form>
+          </div>
+
+          <div id="auctionEndedMessage" style="display: none;" class="alert alert-info">
+            This auction has ended.
+          </div>
+        </div>
+      </div>
+
+      <div class="bid-history">
+        <h2>Bid History</h2>
+        <div id="bidHistoryList"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 AuctionHub. Built with Node.js, Express, and MongoDB.</p>
+    </div>
+  </footer>
+
+  <script src="/js/auth.js"></script>
+  <script src="/js/item-details.js"></script>
+</body>
+</html>

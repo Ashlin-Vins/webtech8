@@ -1,0 +1,16 @@
+# Render.com Build Configuration
+build:
+  env:
+    NODE_ENV: production
+
+# Commands
+buildCommand: npm install
+startCommand: npm start
+
+# Health Check
+healthCheckPath: /
+
+# Environment Variables (Set these in Render Dashboard)
+# MONGODB_URI - Your MongoDB Atlas connection string
+# SESSION_SECRET - Random secure string
+# NODE_ENV - production

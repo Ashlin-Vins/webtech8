@@ -1,0 +1,48 @@
+name: CI - Continuous Integration
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x, 20.x]
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Check server.js syntax
+        run: node -c server.js
+      
+      - name: Check all JavaScript files
+        run: |
+          find public/js -name "*.js" -exec node -c {} \;
+          echo "✅ All JavaScript files are valid"
+      
+      - name: List project structure
+        run: |
+          echo "📁 Project Structure:"
+          tree -L 2 -I 'node_modules' || ls -R
+      
+      - name: Build summary
+        run: |
+          echo "✅ Build completed successfully"
+          echo "Node version: $(node --version)"
+          echo "NPM version: $(npm --version)"

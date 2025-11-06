@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Auction Platform - Home</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <h2>🔨 AuctionHub</h2>
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/auctions">Browse Auctions</a></li>
+        <li class="user-only" style="display: none;"><a href="/create-auction">Create Auction</a></li>
+        <li class="user-only" style="display: none;"><a href="/my-auctions">My Auctions</a></li>
+        <li class="user-only" style="display: none;"><a href="/my-bids">My Bids</a></li>
+        <li class="admin-only" style="display: none;"><a href="/admin">Admin Panel</a></li>
+        <li class="guest-only"><a href="/login" class="btn btn-primary">Login</a></li>
+        <li class="guest-only"><a href="/register" class="btn btn-secondary">Register</a></li>
+        <li class="user-only" style="display: none;">
+          <span id="usernameDisplay" class="username"></span>
+          <button onclick="logout()" class="btn btn-danger">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <h1>Welcome to AuctionHub</h1>
+      <p class="hero-subtitle">Discover amazing deals and auction your items online</p>
+      <div class="hero-buttons">
+        <a href="/auctions" class="btn btn-large btn-primary">Browse Auctions</a>
+        <a href="/register" class="btn btn-large btn-secondary guest-only">Get Started</a>
+        <a href="/create-auction" class="btn btn-large btn-success user-only" style="display: none;">Create Auction</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="features">
+    <div class="container">
+      <h2>How It Works</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📝</div>
+          <h3>1. Register</h3>
+          <p>Create your account as a buyer or seller in seconds</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>2. Browse</h3>
+          <p>Explore active auctions and find items you love</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💰</div>
+          <h3>3. Bid</h3>
+          <p>Place competitive bids on items before time runs out</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏆</div>
+          <h3>4. Win</h3>
+          <p>Win auctions with the highest bid and get amazing deals</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="container">
+      <h2>Live Statistics</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3 id="activeAuctionsCount">0</h3>
+          <p>Active Auctions</p>
+        </div>
+        <div class="stat-card">
+          <h3 id="totalItemsCount">0</h3>
+          <p>Total Items</p>
+        </div>
+        <div class="stat-card">
+          <h3 id="totalBidsCount">0</h3>
+          <p>Bids Placed</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 AuctionHub. Built with Node.js, Express, and MongoDB.</p>
+    </div>
+  </footer>
+
+  <script src="/js/auth.js"></script>
+  <script src="/js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Auctions - AuctionHub</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <h2>🔨 AuctionHub</h2>
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/auctions">Browse Auctions</a></li>
+        <li class="user-only" style="display: none;"><a href="/create-auction">Create Auction</a></li>
+        <li class="user-only" style="display: none;"><a href="/my-auctions" class="active">My Auctions</a></li>
+        <li class="user-only" style="display: none;"><a href="/my-bids">My Bids</a></li>
+        <li class="admin-only" style="display: none;"><a href="/admin">Admin Panel</a></li>
+        <li class="user-only" style="display: none;">
+          <span id="usernameDisplay" class="username"></span>
+          <button onclick="logout()" class="btn btn-danger">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container" style="margin-top: 2rem;">
+    <div class="page-header">
+      <h1>My Auctions</h1>
+      <a href="/create-auction" class="btn btn-success">+ Create New Auction</a>
+    </div>
+
+    <div id="loadingSpinner" class="loading">Loading your auctions...</div>
+    <div id="emptyMessage" class="empty-message" style="display: none;">
+      You haven't created any auctions yet. <a href="/create-auction">Create one now!</a>
+    </div>
+    
+    <div id="myAuctionsGrid" class="auctions-grid"></div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 AuctionHub. Built with Node.js, Express, and MongoDB.</p>
+    </div>
+  </footer>
+
+  <script src="/js/auth.js"></script>
+  <script src="/js/my-auctions.js"></script>
+</body>
+</html>
